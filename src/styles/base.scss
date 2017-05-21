@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+
+.main {
+  .project-path {
+    input {
+      width: calc(100% - 150px);
+    }
+
+    button {
+      width: 150px;
+    }
+  }
+}
