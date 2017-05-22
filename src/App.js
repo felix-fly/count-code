@@ -37,7 +37,7 @@ class App extends React.Component {
     return (
       <div className="main">
         <AppBar
-          title="Code Counter"
+          title="Count Code"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         />
         <Paper>

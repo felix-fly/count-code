@@ -1,11 +1,11 @@
-# code-counter
+# count-code
 Count lines, characters, comments and etc for source code.
 
 
 ## Install
 ``` bash
 # Clone the repository
-$ git clone https://github.com/felix-fly/code-counter.git
+$ git clone https://github.com/felix-fly/count-code.git
 
 # Go into the repository
 $ cd code-counter

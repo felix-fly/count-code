@@ -1,5 +1,5 @@
 {
-  "name": "code-counter",
+  "name": "count-code",
   "version": "1.0.0",
   "description": "Count lines, characters, comments and etc for source code.",
   "keywords": [
@@ -16,13 +16,13 @@
     "start": "electron --require babel-register ./main"
   },
   "author": "Felix <fenxuehaiyan@qq.com>",
-  "homepage": "https://github.com/felix-fly/code-counter",
+  "homepage": "https://github.com/felix-fly/count-code",
   "repository": {
     "type": "git",
-    "url": "https://github.com/felix-fly/code-counter.git"
+    "url": "https://github.com/felix-fly/count-code.git"
   },
   "bugs": {
-    "url": "https://github.com/felix-fly/code-counter/issues"
+    "url": "https://github.com/felix-fly/count-code/issues"
   },
   "license": "MIT",
   "dependencies": {
