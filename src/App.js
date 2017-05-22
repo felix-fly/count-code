@@ -1,9 +1,9 @@
 import React from 'react';
 import { AppBar, Paper, TextField, FloatingActionButton } from 'material-ui';
-import { List, ListItem } from 'material-ui/List';
 import IconAdd from 'material-ui/svg-icons/content/add';
 import { remote } from 'electron';
 import FileUtil from './utils/FileUtil';
+import FileList from './components/FileList';
 import './styles/base.scss';
 
 class App extends React.Component {
@@ -54,11 +54,7 @@ class App extends React.Component {
             />
           </FloatingActionButton>
         </Paper>
-        <List>
-          {fileList.map((file, index) =>
-            <ListItem key={index} primaryText={file} />,
-          )}
-        </List>
+        <FileList list={fileList} />
       </div>
     );
   }

@@ -1,7 +1,21 @@
 import fs from 'fs';
 import path from 'path';
+import readline from 'readline';
 
 let fileList = [];
+
+const count = (file, callback) => {
+  let lines = 0;
+  const r = readline.createInterface({
+    input: fs.createReadStream(file),
+    output: null,
+  });
+  r.on('line', () => {
+    lines += 1;
+  }).on('close', () => {
+    callback({ file, lines });
+  });
+};
 
 const dir = (base, callback) => {
   fs.readdir(base, (err, files) => {
@@ -23,8 +37,10 @@ const dir = (base, callback) => {
         if (stat.isDirectory()) {
           dir(sub, callback);
         } else {
-          fileList.push(sub);
-          callback(fileList);
+          count(sub, (result) => {
+            fileList.push(result);
+            callback(fileList);
+          });
         }
       });
     });
