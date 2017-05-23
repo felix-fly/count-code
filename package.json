@@ -1,6 +1,6 @@
 {
   "name": "count-code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Count lines, characters, comments and etc for source code.",
   "keywords": [
     "code",
