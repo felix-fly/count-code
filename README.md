@@ -8,7 +8,7 @@ Count lines, characters, comments and etc for source code.
 $ git clone https://github.com/felix-fly/count-code.git
 
 # Go into the repository
-$ cd code-counter
+$ cd count-code
 
 # Install dependencies yarn or npm
 $ yarn install
