@@ -25,14 +25,20 @@ class FileList extends React.Component {
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn>File Name</TableHeaderColumn>
-            <TableHeaderColumn>Lines</TableHeaderColumn>
+            <TableHeaderColumn>Total Lines</TableHeaderColumn>
+            <TableHeaderColumn>Code Lines</TableHeaderColumn>
+            <TableHeaderColumn>Empty Lines</TableHeaderColumn>
+            <TableHeaderColumn>Comment Lines</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
           {list.map((item, index) => (
             <TableRow key={index}>
               <TableRowColumn>{item.file}</TableRowColumn>
-              <TableRowColumn>{item.lines}</TableRowColumn>
+              <TableRowColumn>{item.total}</TableRowColumn>
+              <TableRowColumn>{item.code}</TableRowColumn>
+              <TableRowColumn>{item.empty}</TableRowColumn>
+              <TableRowColumn>{item.comment}</TableRowColumn>
             </TableRow>
           ))}
         </TableBody>

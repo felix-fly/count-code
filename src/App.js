@@ -10,30 +10,39 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      base: '',
+      entry: '',
       fileList: [],
+      report: {},
+      option: {
+        useBaseIgnore: true,
+        ignoreFolder: '',
+        ignoreFile: '',
+      },
     };
   }
 
-  onChangeBase = (e) => {
-    const base = e.target.value;
-    this.setState({ base });
+  onChangeEntry = (e) => {
+    const entry = e.target.value;
+    this.setState({ entry });
   }
 
   onSelectPath = () => {
     remote.dialog.showOpenDialog({
       properties: ['openDirectory'],
     }, (filePaths) => {
-      const base = filePaths[0];
-      if (base) {
-        this.setState({ base });
-        FileUtil.list(base, fileList => this.setState({ fileList }));
+      const entry = filePaths[0];
+      if (entry) {
+        this.setState({ entry });
+        FileUtil.load({
+          entry,
+          option: this.state.option,
+        }, ({ fileList, report }) => this.setState({ fileList, report }));
       }
     });
   }
 
   render() {
-    const { base, fileList } = this.state;
+    const { entry, fileList } = this.state;
     return (
       <div className="main">
         <AppBar
@@ -45,8 +54,8 @@ class App extends React.Component {
             fullWidth
             placeholder="Paste path here and click enter"
             name="base"
-            value={base}
-            onChange={this.onChangeBase}
+            value={entry}
+            onChange={this.onChangeEntry}
           />
           <FloatingActionButton>
             <IconAdd
