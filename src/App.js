@@ -42,7 +42,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { entry, fileList } = this.state;
+    const { entry, fileList, report } = this.state;
     return (
       <div className="main">
         <AppBar
@@ -63,6 +63,9 @@ class App extends React.Component {
             />
           </FloatingActionButton>
         </Paper>
+        <div>
+          <span>Files: {report.files}</span>
+        </div>
         <FileList list={fileList} />
       </div>
     );

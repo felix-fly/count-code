@@ -4,14 +4,16 @@ import readline from 'readline';
 import FileType from '../constants/FileType';
 import BaseIgnore from '../constants/BaseIgnore';
 
-let fileList = [];
-let report = {};
-let entry = '';
-let option = {};
+const G = {
+  fileList: [],
+  report: {},
+  entry: '',
+  option: {}
+};
 
 const loadFile = (file, callback) => {
   const ext = path.extname(file);
-  const { useBaseIgnore, ignoreFile } = option;
+  const { useBaseIgnore, ignoreFile } = G.option;
 
   // Ignore files
   let files = [];
@@ -42,7 +44,7 @@ const loadFile = (file, callback) => {
     total += 1;
   }).on('close', () => {
     const result = {
-      file: file.replace(entry, ''),
+      file: file.replace(G.entry, ''),
       total,
       code,
       empty,
@@ -53,7 +55,7 @@ const loadFile = (file, callback) => {
 };
 
 const loadFolder = (current, callback) => {
-  const { useBaseIgnore, ignoreFolder } = option;
+  const { useBaseIgnore, ignoreFolder } = G.option;
   const name = path.basename(current);
   // Ignore folders
   let folders = [];
@@ -82,12 +84,12 @@ const loadFolder = (current, callback) => {
           loadFolder(sub, callback);
         } else {
           loadFile(sub, (result) => {
-            fileList.push(result);
-            report.total += result.total;
-            report.code += result.code;
-            report.empty += result.empty;
-            report.comment += result.comment;
-            callback({ fileList, report });
+            G.fileList.push(result);
+            G.report.total += result.total;
+            G.report.code += result.code;
+            G.report.empty += result.empty;
+            G.report.comment += result.comment;
+            callback({ fileList: G.fileList, report: G.report });
           });
         }
       });
@@ -97,8 +99,8 @@ const loadFolder = (current, callback) => {
 
 const FileUtil = {
   load: (params, callback) => {
-    fileList = [];
-    report = {
+    G.fileList = [];
+    G.report = {
       files: 0,
       folders: 0,
       total: 0,
@@ -106,9 +108,9 @@ const FileUtil = {
       empty: 0,
       comment: 0,
     };
-    entry = params.entry;
-    option = params.option;
-    loadFolder(entry, callback);
+    G.entry = params.entry;
+    G.option = params.option;
+    loadFolder(G.entry, callback);
   },
 };
 
